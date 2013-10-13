@@ -109,6 +109,18 @@ module.exports = function (grunt) {
         ],
         dest: 'dist/js/<%= filename %>.js'
       }
+    },
+
+    jshint: {
+      options: {
+        jshintrc: 'src/.jshintrc'
+      },
+      gruntfile: {
+        src: 'Gruntfile.js'
+      },
+      src: {
+        src: ['src/*.js']
+      }
     }
   });
 
@@ -119,12 +131,15 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   grunt.registerTask('dist-css', ['recess:zview', 'recess:min']);
   grunt.registerTask('dist-js', ['concat:zview', 'uglify:zview']);
   grunt.registerTask('dist', ['concurrent:dist']);
 
   grunt.registerTask('default', ['clean', 'dist']);
+
+  grunt.registerTask('validation', ['jshint']);
 
   grunt.registerTask('development', ['default', 'concurrent:watch']);
   grunt.registerTask('development:connect', ['default', 'concurrent:development']);
