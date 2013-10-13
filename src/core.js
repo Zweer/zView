@@ -2,6 +2,10 @@
 
 	};
 
+	ZView.DEFAULT = {
+
+	};
+
 	$.zView = function (elements, options) {
 		return new ZView(elements, $.extend(true, {}, ZView.DEFAULT, options));
 	};
