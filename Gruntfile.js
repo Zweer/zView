@@ -105,7 +105,7 @@ module.exports = function (grunt) {
 
       zview: {
         src: [
-          
+          'src/core.js'
         ],
         dest: 'dist/js/<%= filename %>.js'
       }
