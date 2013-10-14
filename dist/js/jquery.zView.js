@@ -27,12 +27,14 @@ if (typeof jQuery === 'undefined') {
     this.$element.children().each($.proxy(this._initChild, this));
 
     this.$contents = this.$element.children().css({
-      display: 'none',
       position: 'absolute',
       width: '100%',
       height: '100%',
       zIndex: this.options.zIndex
-    });
+    }).fadeOut(0);
+
+    this.current = 0;
+    this._show();
   };
 
   ZView.prototype._initChild = function(index, element) {
@@ -63,8 +65,26 @@ if (typeof jQuery === 'undefined') {
     
   };
 
+  ZView.prototype._show = function() {
+    var $current = $(this.$contents[this.current]);
+
+    $current
+      .css({
+        zIndex: this.options.zIndex + 10
+      })
+      .fadeIn(this.options.transition, $.proxy(this._showComplete, this));
+  };
+
+  ZView.prototype._showComplete = function() {
+    var $current = $(this.$contents[this.current]);
+
+    this.$contents.not($current).fadeOut(0);
+    $current.css('zIndex', this.options.zIndex);
+  };
+
   ZView.DEFAULT = {
-    zIndex: 1
+    zIndex: 1,
+    transition: 400
   };
 
   $.zView = function (element, options) {
