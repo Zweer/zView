@@ -20,8 +20,7 @@
       zIndex: this.options.zIndex
     }).fadeOut(0);
 
-    this.current = 0;
-    this._show();
+    this.show(0);
   };
 
   ZView.prototype._initChild = function(index, element) {
