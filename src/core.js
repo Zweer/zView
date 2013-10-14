@@ -59,6 +59,8 @@
         zIndex: this.options.zIndex + 10
       })
       .fadeIn(this.options.transition, $.proxy(this._showComplete, this));
+
+    return this;
   };
 
   ZView.prototype._showComplete = function() {
@@ -100,23 +102,25 @@
   };
 
   ZView.prototype.next = function(timeout) {
-    this.show('next', timeout);
+    return this.show('next', timeout);
   };
 
   ZView.prototype.prev = function(timeout) {
-    this.show('prev', timeout);
+    return this.show('prev', timeout);
   };
 
   ZView.prototype.first = function(timeout) {
-    this.show('first', timeout);
+    return this.show('first', timeout);
   };
 
   ZView.prototype.last = function(timeout) {
-    this.show('last', timeout);
+    return this.show('last', timeout);
   };
 
   ZView.prototype.pause = function() {
     clearTimeout(this.timeout);
+
+    return this;
   };
 
   ZView.DEFAULT = {
