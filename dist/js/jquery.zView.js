@@ -22,7 +22,7 @@ if (typeof jQuery === 'undefined') {
   ZView.prototype._initElement = function() {
     this.$element.css({
       position: this.$element.css('position') !== 'static' ? this.$element.css('position') : 'relative'
-    });
+    }).addClass('zView');
 
     this.$element.children().each($.proxy(this._initChild, this));
 
