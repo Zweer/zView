@@ -70,7 +70,9 @@
 
   ZView.prototype.show = function(what, timeout) {
     if (typeof what === 'string') {
-      if (what.substr(0, 2) === '+=') {
+      if (!isNaN(parseInt(what, 10))) {
+        this.current = parseInt(what, 10);
+      } else if (what.substr(0, 2) === '+=') {
         this.current += parseInt(what.substr(2), 10);
       } else if (what.substr(0, 2) === '-=') {
         this.current -= parseInt(what.substr(2), 10);
@@ -105,6 +107,14 @@
     this.show('prev', timeout);
   };
 
+  ZView.prototype.first = function(timeout) {
+    this.show('first', timeout);
+  };
+
+  ZView.prototype.last = function(timeout) {
+    this.show('last', timeout);
+  };
+
   ZView.DEFAULT = {
     zIndex: 1,
     transition: 400,
@@ -128,7 +138,13 @@
       }
 
       if (typeof option === 'string') {
-        data[option]();
+        if (option.substr(0, 2) === '+=' || option.substr(0, 2) === '-=' || !isNaN(parseInt(option, 10))) {
+          data.show(option);
+        } else {
+          data[option]();
+        }
+      } else if (typeof option === 'number') {
+        data.show();
       }
     });
   };
