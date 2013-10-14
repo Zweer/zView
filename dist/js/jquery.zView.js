@@ -82,22 +82,36 @@ if (typeof jQuery === 'undefined') {
     $current.css('zIndex', this.options.zIndex);
   };
 
-  ZView.prototype.next = function() {
-    this.current++;
-    if (this.current >= this.$contents.length) {
-      this.current = 0;
+  ZView.prototype.show = function(what) {
+    if (typeof what === 'string') {
+      if (what.substr(0, 2) === '+=') {
+        this.current += parseInt(what.substr(2), 10);
+      } else if (what.substr(0, 2) === '-=') {
+        this.current -= parseInt(what.substr(2), 10);
+      } else if (what === 'next') {
+        this.current++;
+      } else if (what === 'prev' || what === 'previous') {
+        this.current--;
+      } else if (what === 'first') {
+        this.current = 0;
+      } else if (what === 'last') {
+        this.current = this.$contents.length - 1;
+      }
+    } else if (typeof what === 'numeric') {
+      this.current = what;
     }
+
+    this.current %= this.$contents.length;
 
     this._show();
   };
 
-  ZView.prototype.prev = function() {
-    this.current--;
-    if (this.current < 0) {
-      this.current = this.$contents.length - 1;
-    }
+  ZView.prototype.next = function() {
+    this.show('next');
+  };
 
-    this._show();
+  ZView.prototype.prev = function() {
+    this.show('prev')
   };
 
   ZView.DEFAULT = {
