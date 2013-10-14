@@ -98,7 +98,7 @@
       this.timeout = setTimeout($.proxy(this.next, this, true), this.options.delay);
     }
 
-    this._show();
+    return this._show();
   };
 
   ZView.prototype.next = function(timeout) {
