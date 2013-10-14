@@ -123,6 +123,10 @@
     return this;
   };
 
+  ZView.prototype.play = function() {
+    return this.next(true);
+  };
+
   ZView.DEFAULT = {
     zIndex: 1,
 
