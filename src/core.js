@@ -1,3 +1,5 @@
+  var $window = $(window);
+
   var ZView = function (element, options) {
     this.$element = $(element);
     this.options = options;
@@ -15,8 +17,6 @@
 
     this.$contents = this.$element.children().css({
       position: 'absolute',
-      width: this.$element.width(),
-      height: this.$element.height(),
       zIndex: this.options.zIndex
     }).fadeOut(0);
 
@@ -48,7 +48,16 @@
   };
 
   ZView.prototype._initEvents = function() {
-    
+    $window
+      .resize($.proxy(this._onResize, this))
+      .resize();
+  };
+
+  ZView.prototype._onResize = function() {
+    this.$contents.css({
+      width: this.$element.width(),
+      height: this.$element.height()
+    });
   };
 
   ZView.prototype._show = function() {

@@ -11,6 +11,8 @@ if (typeof jQuery === 'undefined') {
 
 (function ($) { 'use strict';
 
+  var $window = $(window);
+
   var ZView = function (element, options) {
     this.$element = $(element);
     this.options = options;
@@ -28,8 +30,6 @@ if (typeof jQuery === 'undefined') {
 
     this.$contents = this.$element.children().css({
       position: 'absolute',
-      width: this.$element.width(),
-      height: this.$element.height(),
       zIndex: this.options.zIndex
     }).fadeOut(0);
 
@@ -61,7 +61,16 @@ if (typeof jQuery === 'undefined') {
   };
 
   ZView.prototype._initEvents = function() {
-    
+    $window
+      .resize($.proxy(this._onResize, this))
+      .resize();
+  };
+
+  ZView.prototype._onResize = function() {
+    this.$contents.css({
+      width: this.$element.width(),
+      height: this.$element.height()
+    });
   };
 
   ZView.prototype._show = function() {
