@@ -91,7 +91,7 @@
 
     this.current %= this.$contents.length;
 
-    clearTimeout(this.timeout);
+    this.pause();
     if (timeout || this.options.playAfterMove) {
       this.timeout = setTimeout($.proxy(this.next, this, true), this.options.delay);
     }
@@ -113,6 +113,10 @@
 
   ZView.prototype.last = function(timeout) {
     this.show('last', timeout);
+  };
+
+  ZView.prototype.pause = function() {
+    clearTimeout(this.timeout);
   };
 
   ZView.DEFAULT = {
