@@ -82,6 +82,24 @@ if (typeof jQuery === 'undefined') {
     $current.css('zIndex', this.options.zIndex);
   };
 
+  ZView.prototype.next = function() {
+    this.current++;
+    if (this.current >= this.$contents.length) {
+      this.current = 0;
+    }
+
+    this._show();
+  };
+
+  ZView.prototype.prev = function() {
+    this.current--;
+    if (this.current < 0) {
+      this.current = this.$contents.length - 1;
+    }
+
+    this._show();
+  };
+
   ZView.DEFAULT = {
     zIndex: 1,
     transition: 400
