@@ -20,7 +20,7 @@
       zIndex: this.options.zIndex
     }).fadeOut(0);
 
-    this.show(0);
+    this.show(0, this.options.play);
   };
 
   ZView.prototype._initChild = function(index, element) {
@@ -68,7 +68,7 @@
     $current.css('zIndex', this.options.zIndex);
   };
 
-  ZView.prototype.show = function(what) {
+  ZView.prototype.show = function(what, timeout) {
     if (typeof what === 'string') {
       if (what.substr(0, 2) === '+=') {
         this.current += parseInt(what.substr(2), 10);
@@ -83,26 +83,34 @@
       } else if (what === 'last') {
         this.current = this.$contents.length - 1;
       }
-    } else if (typeof what === 'numeric') {
+    } else if (typeof what === 'number') {
       this.current = what;
     }
 
     this.current %= this.$contents.length;
 
+    clearTimeout(this.timeout);
+    if (timeout || this.options.playAfterMove) {
+      this.timeout = setTimeout($.proxy(this.next, this, true), this.options.delay);
+    }
+
     this._show();
   };
 
-  ZView.prototype.next = function() {
-    this.show('next');
+  ZView.prototype.next = function(timeout) {
+    this.show('next', timeout);
   };
 
-  ZView.prototype.prev = function() {
-    this.show('prev')
+  ZView.prototype.prev = function(timeout) {
+    this.show('prev', timeout);
   };
 
   ZView.DEFAULT = {
     zIndex: 1,
-    transition: 400
+    transition: 400,
+    delay: 5000,
+    playAfterMove: false,
+    play: true
   };
 
   $.zView = function (element, options) {
@@ -120,7 +128,7 @@
       }
 
       if (typeof option === 'string') {
-        data[option]($this);
+        data[option]();
       }
     });
   };
