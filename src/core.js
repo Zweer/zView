@@ -117,10 +117,12 @@
 
   ZView.DEFAULT = {
     zIndex: 1,
+
     transition: 400,
-    delay: 5000,
-    playAfterMove: false,
-    play: true
+
+    play:          true,
+    delay:         5000,
+    playAfterMove: false
   };
 
   $.zView = function (element, options) {
