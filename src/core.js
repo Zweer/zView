@@ -20,7 +20,7 @@
       zIndex: this.options.zIndex
     }).fadeOut(0);
 
-    this.show(0, this.options.play);
+    this.show(this.options.startSlide, this.options.play);
   };
 
   ZView.prototype._initChild = function(index, element) {
@@ -138,6 +138,8 @@
 
   ZView.DEFAULT = {
     zIndex: 1,
+
+    startSlide: 0,
 
     transition: 400,
 

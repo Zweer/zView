@@ -33,7 +33,7 @@ if (typeof jQuery === 'undefined') {
       zIndex: this.options.zIndex
     }).fadeOut(0);
 
-    this.show(0, this.options.play);
+    this.show(this.options.startSlide, this.options.play);
   };
 
   ZView.prototype._initChild = function(index, element) {
@@ -151,6 +151,8 @@ if (typeof jQuery === 'undefined') {
 
   ZView.DEFAULT = {
     zIndex: 1,
+
+    startSlide: 0,
 
     transition: 400,
 
