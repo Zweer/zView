@@ -10,3 +10,28 @@
   background: rgba(0, 0, 0, 0.8);
   border-radius: 5px;
 }
+
+.zView .zView-navigator {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  padding-left: 0;
+}
+
+.zView .zView-navigator li {
+  float: left;
+  list-style: none;
+}
+
+.zView .zView-navigator li a {
+  display: block;
+  width: 12px;
+  padding: 0 3px;
+  line-height: 40px;
+  background: red;
+}
+
+.zView .zView-navigator li.zView-navigator-prev a,
+.zView .zView-navigator li.zView-navigator-next a {
+  width: 50px;
+}

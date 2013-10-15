@@ -2,4 +2,34 @@
   padding: 5px;
   background: rgba(0, 0, 0, .8);
   border-radius: 5px;
+
+  .zView-navigator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+
+    padding-left: 0;
+
+    li {
+      list-style: none;
+      float: left;
+
+      a {
+        display: block;
+        width: 12px;
+        line-height: 40px;
+
+        padding: 0 3px;
+
+        background: red;
+      }
+
+      &.zView-navigator-prev,
+      &.zView-navigator-next {
+        a {
+          width: 50px;
+        }
+      }
+    }
+  }
 }

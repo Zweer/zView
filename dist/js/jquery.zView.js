@@ -70,9 +70,31 @@ if (typeof jQuery === 'undefined') {
   };
 
   ZView.prototype._initElements = function() {
-    this.$navigator = $('<div></div>')
+    this.$navigator = $('<ul></ul>')
       .appendTo(this.$element)
-      .addClass('zView-navigator');
+      .addClass('zView-navigator')
+      .css({
+        zIndex: this.options.zIndex + 20
+      });
+
+    this.$navigatorPrevious = $('<a></a>')
+      .text(this.options.navigator.labels.previous)
+      .attr('title', this.options.navigator.labels.previous)
+      .attr('href', '#')
+      .click($.proxy(this.prev, this))
+      .appendTo($('<li></li>').addClass('zView-navigator-prev').appendTo(this.$navigator));
+
+    this.$navigatorNext = $('<a></a>')
+      .text(this.options.navigator.labels.next)
+      .attr('title', this.options.navigator.labels.next)
+      .attr('href', '#')
+      .click($.proxy(this.next, this))
+      .appendTo($('<li></li>').addClass('zView-navigator-next').appendTo(this.$navigator));
+
+    console.log();
+    this.$navigator.css({
+      marginLeft: this.$navigator.width() / -2
+    });
   };
 
   ZView.prototype._initEvents = function() {
@@ -176,7 +198,14 @@ if (typeof jQuery === 'undefined') {
 
     play:          true,
     delay:         5000,
-    playAfterMove: false
+    playAfterMove: false,
+
+    navigator: {
+      labels: {
+        previous: 'Previous',
+        next: 'Next'
+      }
+    }
   };
 
   $.zView = function (element, options) {
