@@ -27,14 +27,17 @@ if (typeof jQuery === 'undefined') {
         position: this.$element.css('position') !== 'static' ? this.$element.css('position') : 'relative'
       })
       .addClass(this.options.name)
-      .addClass(this.options.theme + '-theme');
+      .addClass(this.options.theme + '-theme')
+      .addClass('zView');
 
     this.$element.children().each($.proxy(this._initChild, this));
 
-    this.$contents = this.$element.children().css({
-      position: 'absolute',
-      zIndex: this.options.zIndex
-    }).fadeOut(0);
+    this.$contents = this.$element.children()
+      .css({
+        position: 'absolute',
+        zIndex: this.options.zIndex
+      })
+      .fadeOut(0);
 
     this._initElements();
 
@@ -66,7 +69,9 @@ if (typeof jQuery === 'undefined') {
   };
 
   ZView.prototype._initElements = function() {
-    
+    this.$navigator = $('<div></div>')
+      .appendTo(this.$element)
+      .addClass('zView-navigator');
   };
 
   ZView.prototype._initEvents = function() {
