@@ -22,9 +22,12 @@ if (typeof jQuery === 'undefined') {
   };
 
   ZView.prototype._initElement = function() {
-    this.$element.css({
-      position: this.$element.css('position') !== 'static' ? this.$element.css('position') : 'relative'
-    }).addClass('zView');
+    this.$element
+      .css({
+        position: this.$element.css('position') !== 'static' ? this.$element.css('position') : 'relative'
+      })
+      .addClass(this.options.name)
+      .addClass(this.options.theme + '-theme');
 
     this.$element.children().each($.proxy(this._initChild, this));
 
@@ -156,6 +159,9 @@ if (typeof jQuery === 'undefined') {
   };
 
   ZView.DEFAULT = {
+    name:  'zView',
+    theme: 'default',
+
     zIndex: 1,
 
     startSlide: 0,
