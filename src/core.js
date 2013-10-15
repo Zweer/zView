@@ -20,6 +20,8 @@
       zIndex: this.options.zIndex
     }).fadeOut(0);
 
+    this._initElements();
+
     this.show(this.options.startSlide, this.options.play);
   };
 
@@ -45,6 +47,10 @@
           $element
             .wrap($('<div></div>'));
       }
+  };
+
+  ZView.prototype._initElements = function() {
+    
   };
 
   ZView.prototype._initEvents = function() {
