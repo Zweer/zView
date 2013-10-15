@@ -24,6 +24,7 @@
         position: 'absolute',
         zIndex: this.options.zIndex
       })
+      .addClass('zView-item')
       .fadeOut(0);
 
     this._initElements();
