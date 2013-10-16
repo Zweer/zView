@@ -47,3 +47,14 @@ $(function () {
   $('#zview').zView();
 });
 ```
+
+## Configuration
+
+To configure the plugin you can pass an object to the initialization.
+In the following table when an option has a dot it is intended to be part of an
+object, so for example `buttons.labels.next` converts to this JSON: `{ buttons: { labels: { next: '' } } }`
+
+Option | Description | Default
+--- | --- | ---
+name | The name of that instance of the plugin, used for the style | `'zView'`
+theme | The theme name to be used | `'default'`
