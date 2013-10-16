@@ -91,7 +91,6 @@ if (typeof jQuery === 'undefined') {
       .click($.proxy(this.next, this))
       .appendTo($('<li></li>').addClass('zView-navigator-next').appendTo(this.$navigator));
 
-    console.log();
     this.$navigator.css({
       marginLeft: this.$navigator.width() / -2
     });
