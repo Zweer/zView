@@ -84,6 +84,15 @@ if (typeof jQuery === 'undefined') {
       .click($.proxy(this.prev, this))
       .appendTo($('<li></li>').addClass('zView-navigator-prev').appendTo(this.$navigator));
 
+    this.$contents.each($.proxy(function (index, $content) {
+      $('<a></a>')
+        .html(this.options.navigator.arrows.element)
+        .attr('title', 'Content ' + index)
+        .attr('href', '#')
+        .click($.proxy(this.show, this, index))
+        .appendTo($('<li></li>').appendTo(this.$navigator))
+    }, this));
+
     this.$navigatorNext = $('<a></a>')
       .html(this.options.navigator.arrows.next)
       .attr('title', this.options.navigator.labels.next)
@@ -202,7 +211,8 @@ if (typeof jQuery === 'undefined') {
     navigator: {
       arrows: {
         previous: '&laquo;',
-        next: '&raquo;'
+        next: '&raquo;',
+        element: '&middot;'
       },
 
       labels: {
