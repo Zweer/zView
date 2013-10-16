@@ -65,15 +65,15 @@
       });
 
     this.$navigatorPrevious = $('<a></a>')
-      .html(this.options.navigator.arrows.previous)
-      .attr('title', this.options.navigator.labels.previous)
+      .html(this.options.buttons.htmls.previous)
+      .attr('title', this.options.buttons.labels.previous)
       .attr('href', '#')
       .click($.proxy(this.prev, this))
       .appendTo($('<li></li>').addClass('zView-navigator-prev').appendTo(this.$navigator));
 
     this.$contents.each($.proxy(function (index, $content) {
       $('<a></a>')
-        .html(this.options.navigator.arrows.element)
+        .html(this.options.buttons.htmls.element)
         .attr('title', 'Content ' + index)
         .attr('href', '#')
         .click($.proxy(this.show, this, index))
@@ -81,8 +81,8 @@
     }, this));
 
     this.$navigatorNext = $('<a></a>')
-      .html(this.options.navigator.arrows.next)
-      .attr('title', this.options.navigator.labels.next)
+      .html(this.options.buttons.htmls.next)
+      .attr('title', this.options.buttons.labels.next)
       .attr('href', '#')
       .click($.proxy(this.next, this))
       .appendTo($('<li></li>').addClass('zView-navigator-next').appendTo(this.$navigator));
@@ -195,16 +195,20 @@
     delay:         5000,
     playAfterMove: false,
 
-    navigator: {
-      arrows: {
+    buttons: {
+      htmls: {
         previous: '&laquo;',
         next: '&raquo;',
-        element: '&middot;'
+        element: '&middot;',
+        play: '&#x25BA;',
+        pause: '&#x2590; &#x2590;'
       },
 
       labels: {
         previous: 'Previous',
-        next: 'Next'
+        next: 'Next',
+        play: 'Play',
+        pause: 'Pause'
       }
     }
   };
