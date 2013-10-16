@@ -59,6 +59,7 @@
   ZView.prototype._initElements = function() {
     this._initNavigator();
     this._initPlayPause();
+    this._initNextPrev();
   };
 
   ZView.prototype._initNavigator = function() {
@@ -146,6 +147,68 @@
       }, this));
 
       this.$playPause.mouseleave();
+  };
+
+  ZView.prototype._initNextPrev = function() {
+    this.$next = $('<a></a>')
+      .appendTo(this.$element)
+      .addClass('zView-next')
+      .css({
+        zIndex: this.options.zIndex + 20
+      })
+      .attr('href', '#')
+      .attr('title', this.options.buttons.labels.next)
+      .html(this.options.buttons.htmls.next)
+      .click($.proxy(this.next, this))
+      .mouseenter($.proxy(function () {
+        this.$next.animate({
+          opacity: this.options.buttons.opacity.next.end
+        }, {
+          duration: this.options.buttons.opacity.next.durationEnd,
+          easing: this.options.buttons.opacity.next.easingEnd,
+          queue: false
+        });
+      }, this))
+      .mouseleave($.proxy(function () {
+        this.$next.animate({
+          opacity: this.options.buttons.opacity.next.start
+        }, {
+          duration: this.options.buttons.opacity.next.durationStart,
+          easing: this.options.buttons.opacity.next.easingStart,
+          queue: false
+        });
+      }, this));
+    this.$next.mouseleave();
+
+    this.$previous = $('<a></a>')
+      .appendTo(this.$element)
+      .addClass('zView-prev')
+      .css({
+        zIndex: this.options.zIndex + 20
+      })
+      .attr('href', '#')
+      .attr('title', this.options.buttons.labels.previous)
+      .html(this.options.buttons.htmls.previous)
+      .click($.proxy(this.prev, this))
+      .mouseenter($.proxy(function () {
+        this.$previous.animate({
+          opacity: this.options.buttons.opacity.previous.end
+        }, {
+          duration: this.options.buttons.opacity.previous.durationEnd,
+          easing: this.options.buttons.opacity.previous.easingEnd,
+          queue: false
+        });
+      }, this))
+      .mouseleave($.proxy(function () {
+        this.$previous.animate({
+          opacity: this.options.buttons.opacity.previous.start
+        }, {
+          duration: this.options.buttons.opacity.previous.durationStart,
+          easing: this.options.buttons.opacity.previous.easingStart,
+          queue: false
+        });
+      }, this));
+    this.$previous.mouseleave();
   };
 
   ZView.prototype._refreshPlayPause = function() {
@@ -349,6 +412,26 @@
         },
 
         playpause: {
+          start: 0.6,
+          durationStart: 400,
+          easingStart: 'swing',
+
+          end: 1,
+          durationEnd: 400,
+          easingEnd: 'swing'
+        },
+
+        next: {
+          start: 0.6,
+          durationStart: 400,
+          easingStart: 'swing',
+
+          end: 1,
+          durationEnd: 400,
+          easingEnd: 'swing'
+        },
+
+        previous: {
           start: 0.6,
           durationStart: 400,
           easingStart: 'swing',
