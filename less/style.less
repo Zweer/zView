@@ -1,4 +1,6 @@
 .zView {
+  @padding: 5px;
+
   @element-padding: 20px;
   @element-background: #fff;
   @element-color: #333;
@@ -10,9 +12,11 @@
     box-sizing: content-box;
   }
 
-  padding: 5px;
-  background: rgba(0, 0, 0, .8);
+  padding: @padding;
+  background-color: @element-background;
   border-radius: 5px;
+
+  box-shadow: 0 38px 30px -18px rgba(0, 0, 0, 0.5);
 
   .zView-navigator {
     position: absolute;
@@ -67,19 +71,19 @@
     }
   }
 
-  .zView-playpause {
+  .zView-playpause,
+  .zView-prev,
+  .zView-next {
     position: absolute;
-    top: @element-padding;
-    right: @element-padding;
 
     display: block;
     width: 30px;
     line-height: 30px;
+    font-size: 16px;
 
-    background: @element-background;
+    background-color: @element-background;
 
     color: @element-color;
-    font-size: 16px;
 
     text-decoration: none;
     text-align: center;
@@ -87,8 +91,13 @@
     border-radius: @element-border-radius;
 
     &:hover {
-      color: @element-hover-color
+      color: @element-hover-color;
     }
+  }
+
+  .zView-playpause {
+    top: @element-padding;
+    right: @element-padding;
 
     &.zView-playpause-play {
       padding-left: 3px;
@@ -98,5 +107,24 @@
       padding-right: 6px;
       width: 24px;
     }
+  }
+
+  .zView-prev,
+  .zView-next {
+    top: 50%;
+
+    margin-top: -15px; 
+  }
+  .zView-prev {
+    left: @padding;
+
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .zView-next {
+    right: @padding;
+
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
   }
 }
