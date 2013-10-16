@@ -261,7 +261,7 @@ if (typeof jQuery === 'undefined') {
         next: '&raquo;',
         element: '&middot;',
         play: '&#x25BA;',
-        pause: '&#x2590; &#x2590;'
+        pause: '&#x2590;&#x2590;'
       },
 
       labels: {
