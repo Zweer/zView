@@ -57,6 +57,11 @@
   };
 
   ZView.prototype._initElements = function() {
+    this._initNavigator();
+    this._initPlayPause();
+  };
+
+  ZView.prototype._initNavigator = function() {
     this.$navigator = $('<ul></ul>')
       .appendTo(this.$element)
       .addClass('zView-navigator')
@@ -90,6 +95,33 @@
     this.$navigator.css({
       marginLeft: this.$navigator.width() / -2
     });
+  };
+
+  ZView.prototype._initPlayPause = function() {
+    this.$playPause = $('<a></a>')
+      .appendTo(this.$element)
+      .addClass('zView-playpause')
+      .attr('href', '#')
+      .css({
+        zIndex: this.options.zIndex + 20
+      })
+      .click($.proxy(this.toggle, this));
+  };
+
+  ZView.prototype._refreshPlayPause = function() {
+    if (this.play) {
+      this.$playPause
+        .removeClass('zView-playpause-play')
+        .addClass('zView-playpause-pause')
+        .html(this.options.buttons.htmls.pause)
+        .attr('title', this.options.buttons.labels.pause);
+    } else {
+      this.$playPause
+        .removeClass('zView-playpause-pause')
+        .addClass('zView-playpause-play')
+        .html(this.options.buttons.htmls.play)
+        .attr('title', this.options.buttons.labels.play);
+    }
   };
 
   ZView.prototype._initEvents = function() {
@@ -147,10 +179,15 @@
 
     this.current %= this.$contents.length;
 
-    this.pause();
+    this.stop();
     if (timeout || this.options.playAfterMove) {
+      this.play = true;
       this.timeout = setTimeout($.proxy(this.next, this, true), this.options.delay);
+    } else {
+      this.play = false;
     }
+
+    this._refreshPlayPause();
 
     return this._show();
   };
@@ -171,14 +208,24 @@
     return this.show('last', timeout);
   };
 
-  ZView.prototype.pause = function() {
+  ZView.prototype.stop = function() {
     clearTimeout(this.timeout);
 
     return this;
   };
 
+  ZView.prototype.pause = function() {
+    // TODO
+    return this;
+  };
+
   ZView.prototype.play = function() {
     return this.next(true);
+  };
+
+  ZView.prototype.toggle = function() {
+    // TODO: change this.stop with this.pause
+    return this.play ? this.stop() : this.play();
   };
 
   ZView.DEFAULT = {
