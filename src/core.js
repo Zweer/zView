@@ -67,7 +67,25 @@
       .addClass('zView-navigator')
       .css({
         zIndex: this.options.zIndex + 20
-      });
+      })
+      .mouseenter($.proxy(function () {
+        this.$navigator.animate({
+          opacity: this.options.buttons.opacity.navigator.end
+        }, {
+          duration: this.options.buttons.opacity.navigator.durationEnd,
+          easing: this.options.buttons.opacity.navigator.easingEnd,
+          queue: false
+        });
+      }, this))
+      .mouseleave($.proxy(function () {
+        this.$navigator.animate({
+          opacity: this.options.buttons.opacity.navigator.start
+        }, {
+          duration: this.options.buttons.opacity.navigator.durationStart,
+          easing: this.options.buttons.opacity.navigator.easingStart,
+          queue: false
+        });
+      }, this));
 
     this.$navigatorPrevious = $('<a></a>')
       .html(this.options.buttons.htmls.previous)
@@ -92,9 +110,11 @@
       .click($.proxy(this.next, this))
       .appendTo($('<li></li>').addClass('zView-navigator-next').appendTo(this.$navigator));
 
-    this.$navigator.css({
-      marginLeft: this.$navigator.width() / -2
-    });
+    this.$navigator
+      .css({
+        marginLeft: this.$navigator.width() / -2
+      })
+      .mouseleave();
   };
 
   ZView.prototype._initPlayPause = function() {
@@ -105,7 +125,27 @@
       .css({
         zIndex: this.options.zIndex + 20
       })
-      .click($.proxy(this.toggle, this));
+      .click($.proxy(this.toggle, this))
+      .mouseenter($.proxy(function () {
+        this.$playPause.animate({
+          opacity: this.options.buttons.opacity.playpause.end
+        }, {
+          duration: this.options.buttons.opacity.playpause.durationEnd,
+          easing: this.options.buttons.opacity.playpause.easingEnd,
+          queue: false
+        });
+      }, this))
+      .mouseleave($.proxy(function () {
+        this.$playPause.animate({
+          opacity: this.options.buttons.opacity.playpause.start
+        }, {
+          duration: this.options.buttons.opacity.playpause.durationStart,
+          easing: this.options.buttons.opacity.playpause.easingStart,
+          queue: false
+        });
+      }, this));
+
+      this.$playPause.mouseleave();
   };
 
   ZView.prototype._refreshPlayPause = function() {
@@ -295,6 +335,28 @@
         next: 'Next',
         play: 'Play',
         pause: 'Pause'
+      },
+
+      opacity: {
+        navigator: {
+          start: 0.6,
+          durationStart: 400,
+          easingStart: 'swing',
+
+          end: 1,
+          durationEnd: 400,
+          easingEnd: 'swing'
+        },
+
+        playpause: {
+          start: 0.6,
+          durationStart: 400,
+          easingStart: 'swing',
+
+          end: 1,
+          durationEnd: 400,
+          easingEnd: 'swing'
+        }
       }
     }
   };
