@@ -65,14 +65,14 @@
       });
 
     this.$navigatorPrevious = $('<a></a>')
-      .text(this.options.navigator.labels.previous)
+      .html(this.options.navigator.arrows.previous)
       .attr('title', this.options.navigator.labels.previous)
       .attr('href', '#')
       .click($.proxy(this.prev, this))
       .appendTo($('<li></li>').addClass('zView-navigator-prev').appendTo(this.$navigator));
 
     this.$navigatorNext = $('<a></a>')
-      .text(this.options.navigator.labels.next)
+      .html(this.options.navigator.arrows.next)
       .attr('title', this.options.navigator.labels.next)
       .attr('href', '#')
       .click($.proxy(this.next, this))
@@ -187,6 +187,11 @@
     playAfterMove: false,
 
     navigator: {
+      arrows: {
+        previous: '&laquo;',
+        next: '&raquo;'
+      },
+
       labels: {
         previous: 'Previous',
         next: 'Next'
