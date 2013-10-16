@@ -109,7 +109,7 @@
   };
 
   ZView.prototype._refreshPlayPause = function() {
-    if (this.play) {
+    if (this.playing) {
       this.$playPause
         .removeClass('zView-playpause-play')
         .addClass('zView-playpause-pause')
@@ -181,10 +181,10 @@
 
     this.stop();
     if (timeout || this.options.playAfterMove) {
-      this.play = true;
+      this.playing = true;
       this.timeout = setTimeout($.proxy(this.next, this, true), this.options.delay);
     } else {
-      this.play = false;
+      this.playing = false;
     }
 
     this._refreshPlayPause();
@@ -193,39 +193,78 @@
   };
 
   ZView.prototype.next = function(timeout) {
+    if (timeout instanceof $.Event) {
+      timeout.preventDefault();
+      timeout = false;
+    }
+
     return this.show('next', timeout);
   };
 
   ZView.prototype.prev = function(timeout) {
+    if (timeout instanceof $.Event) {
+      timeout.preventDefault();
+      timeout = false;
+    }
+    
     return this.show('prev', timeout);
   };
 
   ZView.prototype.first = function(timeout) {
+    if (timeout instanceof $.Event) {
+      timeout.preventDefault();
+      timeout = false;
+    }
+    
     return this.show('first', timeout);
   };
 
   ZView.prototype.last = function(timeout) {
+    if (timeout instanceof $.Event) {
+      timeout.preventDefault();
+      timeout = false;
+    }
+    
     return this.show('last', timeout);
   };
 
-  ZView.prototype.stop = function() {
+  ZView.prototype.stop = function(event) {
+    if (event instanceof $.Event) {
+      event.preventDefault();
+    }
+
+    this.playing = false;
+    this._refreshPlayPause();
+
     clearTimeout(this.timeout);
 
     return this;
   };
 
-  ZView.prototype.pause = function() {
+  ZView.prototype.pause = function(event) {
+    if (event instanceof $.Event) {
+      event.preventDefault();
+    }
+
     // TODO
     return this;
   };
 
-  ZView.prototype.play = function() {
+  ZView.prototype.play = function(event) {
+    if (event instanceof $.Event) {
+      event.preventDefault();
+    }
+    
     return this.next(true);
   };
 
-  ZView.prototype.toggle = function() {
+  ZView.prototype.toggle = function(event) {
+    if (event instanceof $.Event) {
+      event.preventDefault();
+    }
+    
     // TODO: change this.stop with this.pause
-    return this.play ? this.stop() : this.play();
+    return this.playing ? this.stop() : this.play();
   };
 
   ZView.DEFAULT = {
