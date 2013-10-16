@@ -1,13 +1,22 @@
 .zView {
+  @element-padding: 20px;
+  @element-background: #fff;
+  @element-color: #333;
+  @element-hover-color: #08c;
+  @element-border-radius: 3px;
+
+  &,
+  & * {
+    box-sizing: content-box;
+  }
+
   padding: 5px;
   background: rgba(0, 0, 0, .8);
   border-radius: 5px;
 
   .zView-navigator {
-    @border-radius: 3px;
-
     position: absolute;
-    bottom: 20px;
+    bottom: @element-padding;
     left: 50%;
 
     padding-left: 0;
@@ -16,7 +25,7 @@
       list-style: none;
       float: left;
 
-      background-color: #fff;
+      background-color: @element-background;
 
       a {
         display: block;
@@ -26,7 +35,7 @@
 
         text-align: center;
 
-        color: #333;
+        color: @element-color;
         text-decoration: none;
 
         font-size: 72px;
@@ -48,13 +57,46 @@
       }
 
       &.zView-navigator-prev {
-        border-top-left-radius: @border-radius;
-        border-bottom-left-radius: @border-radius;
+        border-top-left-radius: @element-border-radius;
+        border-bottom-left-radius: @element-border-radius;
       }
       &.zView-navigator-next {
-        border-top-right-radius: @border-radius;
-        border-bottom-right-radius: @border-radius;
+        border-top-right-radius: @element-border-radius;
+        border-bottom-right-radius: @element-border-radius;
       }
+    }
+  }
+
+  .zView-playpause {
+    position: absolute;
+    top: @element-padding;
+    right: @element-padding;
+
+    display: block;
+    width: 30px;
+    line-height: 30px;
+
+    background: @element-background;
+
+    color: @element-color;
+    font-size: 16px;
+
+    text-decoration: none;
+    text-align: center;
+
+    border-radius: @element-border-radius;
+
+    &:hover {
+      color: @element-hover-color
+    }
+
+    &.zView-playpause-play {
+      padding-left: 3px;
+      width: 27px;
+    }
+    &.zView-playpause-pause {
+      padding-right: 6px;
+      width: 24px;
     }
   }
 }
