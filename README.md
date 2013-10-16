@@ -40,7 +40,7 @@ a container:
 
 ### Step 3: Call the zView
 
-Call `.zView()` on the container `<div id="<view">`, eventually passing an object of options.
+Call `.zView()` on the container `$('#zview')`, eventually passing an object of options.
 
 ```javascript
 $(function () {
