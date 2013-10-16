@@ -21,18 +21,35 @@
 .zView .zView-navigator li {
   float: left;
   list-style: none;
+  background-color: #fff;
 }
 
 .zView .zView-navigator li a {
   display: block;
   width: 12px;
   padding: 0 3px;
-  line-height: 40px;
+  line-height: 30px;
+  color: #333;
   text-align: center;
-  background: red;
+  text-decoration: none;
+}
+
+.zView .zView-navigator li.zView-navigator-prev:hover,
+.zView .zView-navigator li.zView-navigator-next:hover {
+  background-color: #f5f5f5;
 }
 
 .zView .zView-navigator li.zView-navigator-prev a,
 .zView .zView-navigator li.zView-navigator-next a {
-  width: 50px;
+  width: 30px;
+}
+
+.zView .zView-navigator li.zView-navigator-prev {
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+}
+
+.zView .zView-navigator li.zView-navigator-next {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
