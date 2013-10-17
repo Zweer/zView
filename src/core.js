@@ -99,7 +99,13 @@
       .click($.proxy(this.options.rtl ? this.next : this.prev, this))
       .appendTo($('<li></li>').addClass('zView-navigator-prev').appendTo(this.$navigator));
 
-    this.$contents.each($.proxy(function (index, $content) {
+    var $contents = this.$contents;
+    if (this.options.rtl) {
+      $contents = $($contents.get().reverse());
+    }
+    $contents.each($.proxy(function (_, content) {
+      var index = $(content).index();
+
       $('<a></a>')
         .html(this.options.buttons.htmls.element)
         .attr('title', 'Content ' + index)
@@ -256,7 +262,7 @@
 
     this.$navigatorContents
       .removeClass('active')
-      .eq(this.current)
+      .eq(this.options.rtl ? (this.$contents.length - this.current - 1) : this.current)
         .addClass('active');
 
     return this;
@@ -290,8 +296,12 @@
       this.current = what;
     }
 
-    if (this.current >= this.$contents.length) {
+    if (this.current >= this.$contents.length || this.current < 0) {
       if (this.options.infiniteLoop) {
+        while (this.current < 0) {
+          this.current += this.$contents.length;
+        }
+
         this.current %= this.$contents.length;
       } else {
         return this;
