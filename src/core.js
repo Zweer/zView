@@ -283,6 +283,34 @@
       .removeClass('active')
       .eq(this.options.rtl ? (this.$contents.length - this.current - 1) : this.current)
         .addClass('active');
+
+    if (!this.options.infiniteLoop) {
+      if (this.options.rtl) {
+        this.$navigatorNext
+          .attr('href', this.current === 0 ? '' : '#')
+          .css('pointer-events', this.current === 0 ? 'none' : 'auto')
+          .parent('li')
+            .fadeTo(this.current === 0 ? this.options.buttons.opacity.navigator.durationHide : this.options.buttons.opacity.navigator.durationShow, this.current === 0 ? this.options.buttons.opacity.navigator.hide : this.options.buttons.opacity.navigator.show, this.current === 0 ? this.options.buttons.opacity.navigator.easingHide : this.options.buttons.opacity.navigator.easingShow);
+
+        this.$navigatorPrevious
+          .attr('href', this.current === this.$contents.length - 1 ? '' : '#')
+          .css('pointer-events', this.current === this.$contents.length - 1 ? 'none' : 'auto')
+          .parent('li')
+            .fadeTo(this.current === this.$contents.length - 1 ? this.options.buttons.opacity.navigator.durationHide : this.options.buttons.opacity.navigator.durationShow, this.current === this.$contents.length - 1 ? this.options.buttons.opacity.navigator.hide : this.options.buttons.opacity.navigator.show, this.current === this.$contents.length - 1 ? this.options.buttons.opacity.navigator.easingHide : this.options.buttons.opacity.navigator.easingShow);
+      } else {
+        this.$navigatorNext
+        .attr('href', this.current === this.$contents.length - 1 ? '' : '#')
+          .css('pointer-events', this.current === this.$contents.length - 1 ? 'none' : 'auto')
+        .parent('li')
+            .fadeTo(this.current === this.$contents.length - 1 ? this.options.buttons.opacity.navigator.durationHide : this.options.buttons.opacity.navigator.durationShow, this.current === this.$contents.length - 1 ? this.options.buttons.opacity.navigator.hide : this.options.buttons.opacity.navigator.show, this.current === this.$contents.length - 1 ? this.options.buttons.opacity.navigator.easingHide : this.options.buttons.opacity.navigator.easingShow);
+
+        this.$navigatorPrevious
+        .attr('href', this.current === 0 ? '' : '#')
+          .css('pointer-events', this.current === 0 ? 'none' : 'auto')
+        .parent('li')
+            .fadeTo(this.current === 0 ? this.options.buttons.opacity.navigator.durationHide : this.options.buttons.opacity.navigator.durationShow, this.current === 0 ? this.options.buttons.opacity.navigator.hide : this.options.buttons.opacity.navigator.show, this.current === 0 ? this.options.buttons.opacity.navigator.easingHide : this.options.buttons.opacity.navigator.easingShow);
+      }
+    }
   };
 
   ZView.prototype._initEvents = function() {
@@ -485,7 +513,15 @@
 
           end: 1,
           durationEnd: 400,
-          easingEnd: 'swing'
+          easingEnd: 'swing',
+
+          hide: 0,
+          durationHide: 400,
+          easingHide: 'swing',
+
+          show: 1,
+          durationShow: 400,
+          easingShow: 'swing'
         },
 
         playpause: {
