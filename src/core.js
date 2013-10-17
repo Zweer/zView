@@ -229,6 +229,7 @@
   ZView.prototype._refresh = function() {
     this._refreshPlayPause();
     this._refreshNextPrev();
+    this._refreshNavigator();
   };
 
   ZView.prototype._refreshPlayPause = function() {
@@ -277,6 +278,13 @@
     }
   };
 
+  ZView.prototype._refreshNavigator = function() {
+    this.$navigatorContents
+      .removeClass('active')
+      .eq(this.options.rtl ? (this.$contents.length - this.current - 1) : this.current)
+        .addClass('active');
+  };
+
   ZView.prototype._initEvents = function() {
     $window
       .resize($.proxy(this._onResize, this))
@@ -298,11 +306,6 @@
         zIndex: this.options.zIndex + 10
       })
       .fadeIn(this.options.transition, $.proxy(this._showComplete, this));
-
-    this.$navigatorContents
-      .removeClass('active')
-      .eq(this.options.rtl ? (this.$contents.length - this.current - 1) : this.current)
-        .addClass('active');
 
     return this;
   };
