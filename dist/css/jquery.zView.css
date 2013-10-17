@@ -19,9 +19,55 @@
 
 .zView .zView-navigator {
   position: absolute;
-  bottom: 20px;
-  left: 50%;
   padding-left: 0;
+  margin: 0;
+}
+
+.zView .zView-navigator.zView-navigator-x-left {
+  left: 20px;
+}
+
+.zView .zView-navigator.zView-navigator-x-center,
+.zView .zView-navigator.zView-navigator-x-middle {
+  left: 50%;
+}
+
+.zView .zView-navigator.zView-navigator-x-right {
+  right: 20px;
+}
+
+.zView .zView-navigator.zView-navigator-y-top {
+  top: 20px;
+}
+
+.zView .zView-navigator.zView-navigator-y-top.zView-navigator-x-right {
+  /* Fix for the play/pause button */
+
+  margin-right: 35px;
+}
+
+.zView .zView-navigator.zView-navigator-y-center,
+.zView .zView-navigator.zView-navigator-y-middle {
+  top: 50%;
+  margin-top: -15px;
+}
+
+.zView .zView-navigator.zView-navigator-y-center.zView-navigator-x-left,
+.zView .zView-navigator.zView-navigator-y-middle.zView-navigator-x-left {
+  /* Fix for the left arrow */
+
+  margin-left: 35px;
+}
+
+.zView .zView-navigator.zView-navigator-y-center.zView-navigator-x-right,
+.zView .zView-navigator.zView-navigator-y-middle.zView-navigator-x-right {
+  /* Fix for the right arrow */
+
+  margin-right: 35px;
+}
+
+.zView .zView-navigator.zView-navigator-y-bottom {
+  bottom: 20px;
 }
 
 .zView .zView-navigator li {
@@ -69,6 +115,7 @@
   position: absolute;
   display: block;
   width: 30px;
+  padding-bottom: 3px;
   font-size: 16px;
   line-height: 30px;
   color: #333333;

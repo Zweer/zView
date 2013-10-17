@@ -67,6 +67,20 @@ play | If the slider starts playing its slides | `true`
 delay | The amount of milliseconds the slider will wait before play the next content | `5000`
 playAfterMove | After a manual slide move, the slider will continue playing? | `false`
 
+### Navigator Configuration
+
+A particular piece of configuration is the one associated with the navigator.
+Plase note that *all the options of this table are sub-objects of the `navigator` object*.
+
+Few Notes:
+- the `position.x` option is used to calculate the left margin of the navigator when its value is `center` and the position of the thumbnails, for the positioning please use the style
+- the `position.y` option is used to only calculate the position of the thumbnails, for the positioning please use the style
+
+Option | Description | Default
+--- | --- | :---:
+position.x | The horizontal position of the navigator | `'center'`
+position.y | The vertical position of the navigator | `'bottom'`
+
 ### Buttons Configuration
 
 A particular piece of configuration is the one associated with the buttons.

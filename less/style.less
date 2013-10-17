@@ -20,8 +20,44 @@
 
   .zView-navigator {
     position: absolute;
-    bottom: @element-padding;
-    left: 50%;
+    margin: 0;
+
+    &.zView-navigator-x-left {
+      left: @element-padding;
+    }
+    &.zView-navigator-x-center,
+    &.zView-navigator-x-middle {
+      left: 50%;
+    }
+    &.zView-navigator-x-right {
+      right: @element-padding;
+    }
+
+    &.zView-navigator-y-top {
+      top: @element-padding;
+
+      &.zView-navigator-x-right {
+        /* Fix for the play/pause button */
+        margin-right: 35px;
+      }
+    }
+    &.zView-navigator-y-center,
+    &.zView-navigator-y-middle {
+      top: 50%;
+      margin-top: -15px;
+
+      &.zView-navigator-x-left {
+        /* Fix for the left arrow */
+        margin-left: 35px;
+      }
+      &.zView-navigator-x-right {
+        /* Fix for the right arrow */
+        margin-right: 35px;
+      }
+    }
+    &.zView-navigator-y-bottom {
+      bottom: @element-padding;
+    }
 
     padding-left: 0;
 
@@ -81,6 +117,7 @@
     width: 30px;
     line-height: 30px;
     font-size: 16px;
+    padding-bottom: 3px;
 
     background-color: @element-background;
 

@@ -83,6 +83,8 @@ if (typeof jQuery === 'undefined') {
     this.$navigator = $('<ul></ul>')
       .appendTo(this.$element)
       .addClass('zView-navigator')
+      .addClass('zView-navigator-x-' + this.options.navigator.position.x)
+      .addClass('zView-navigator-y-' + this.options.navigator.position.y)
       .css({
         zIndex: this.options.zIndex + 20
       })
@@ -135,11 +137,13 @@ if (typeof jQuery === 'undefined') {
       .click($.proxy(this.options.rtl ? this.prev : this.next, this))
       .appendTo($('<li></li>').addClass('zView-navigator-next').appendTo(this.$navigator));
 
-    this.$navigator
-      .css({
+    if (this.options.navigator.position.x === 'center') {
+      this.$navigator.css({
         marginLeft: this.$navigator.width() / -2
-      })
-      .mouseleave();
+      });
+    }
+    
+    this.$navigator.mouseleave();
   };
 
   ZView.prototype._initPlayPause = function() {
@@ -424,6 +428,13 @@ if (typeof jQuery === 'undefined') {
     play:          true,
     delay:         5000,
     playAfterMove: false,
+
+    navigator: {
+      position: {
+        x: 'center',
+        y: 'bottom'
+      }
+    },
 
     buttons: {
       htmls: {
