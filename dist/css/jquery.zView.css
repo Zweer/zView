@@ -134,6 +134,7 @@
 .zView .zView-playpause {
   top: 20px;
   right: 20px;
+  padding-bottom: 0;
 }
 
 .zView .zView-playpause.zView-playpause-play {
