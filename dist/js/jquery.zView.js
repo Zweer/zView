@@ -118,8 +118,9 @@ if (typeof jQuery === 'undefined') {
         .attr('title', 'Content ' + index)
         .attr('href', '#')
         .click($.proxy(this.show, this, index))
-        .appendTo($('<li></li>').appendTo(this.$navigator))
+        .appendTo($('<li></li>').appendTo(this.$navigator));
     }, this));
+    this.$navigatorContents = this.$navigator.find(':not(:first-child) a');
 
     this.$navigatorNext = $('<a></a>')
       .html(this.options.buttons.htmls.next)
@@ -265,6 +266,11 @@ if (typeof jQuery === 'undefined') {
         zIndex: this.options.zIndex + 10
       })
       .fadeIn(this.options.transition, $.proxy(this._showComplete, this));
+
+    this.$navigatorContents
+      .removeClass('active')
+      .eq(this.current)
+        .addClass('active');
 
     return this;
   };

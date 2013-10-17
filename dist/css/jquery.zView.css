@@ -40,7 +40,8 @@
   text-decoration: none;
 }
 
-.zView .zView-navigator li a:hover {
+.zView .zView-navigator li a:hover,
+.zView .zView-navigator li a.active {
   color: #08c;
 }
 
