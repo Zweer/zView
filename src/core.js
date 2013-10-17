@@ -228,6 +228,7 @@
 
   ZView.prototype._refresh = function() {
     this._refreshPlayPause();
+    this._refreshNextPrev();
   };
 
   ZView.prototype._refreshPlayPause = function() {
@@ -243,6 +244,36 @@
         .addClass('zView-playpause-play')
         .html(this.options.buttons.htmls.play)
         .attr('title', this.options.buttons.labels.play);
+    }
+  };
+
+  ZView.prototype._refreshNextPrev = function() {
+    if (!this.options.infiniteLoop) {
+      if (this.options.rtl) {
+        if (this.current === 0) {
+          this.$next.fadeOut(this.options.buttons.opacity.next.durationStart);
+        } else if (!this.$next.is(':visible')) {
+          this.$next.fadeTo(this.options.buttons.opacity.next.durationEnd, this.options.buttons.opacity.next.start);
+        }
+
+        if (this.current === this.$contents.length - 1) {
+          this.$previous.fadeOut(this.options.buttons.opacity.previous.durationStart);
+        } else if (!this.$previous.is(':visible')) {
+          this.$previous.fadeTo(this.options.buttons.opacity.previous.durationEnd, this.options.buttons.opacity.previous.start);
+        }
+      } else {
+        if (this.current === this.$contents.length - 1) {
+          this.$next.fadeOut(this.options.buttons.opacity.next.durationStart);
+        } else if (!this.$next.is(':visible')) {
+          this.$next.fadeTo(this.options.buttons.opacity.next.durationEnd, this.options.buttons.opacity.next.start);
+        }
+
+        if (this.current === 0) {
+          this.$previous.fadeOut(this.options.buttons.opacity.previous.durationStart);
+        } else if (!this.$previous.is(':visible')) {
+          this.$previous.fadeTo(this.options.buttons.opacity.previous.durationEnd, this.options.buttons.opacity.previous.start);
+        }
+      }
     }
   };
 
