@@ -293,7 +293,13 @@ if (typeof jQuery === 'undefined') {
       this.current = what;
     }
 
-    this.current %= this.$contents.length;
+    if (this.current >= this.$contents.length) {
+      if (this.options.infiniteLoop) {
+        this.current %= this.$contents.length;
+      } else {
+        return this;
+      }
+    }
 
     this.stop();
     if (timeout || this.options.playAfterMove) {
@@ -390,6 +396,7 @@ if (typeof jQuery === 'undefined') {
     zIndex: 1,
 
     startSlide: 0,
+    infiniteLoop: true,
 
     transition: 400,
 
