@@ -56,5 +56,11 @@ object, so for example `buttons.labels.next` converts to this JSON: `{ buttons: 
 
 Option | Description | Default
 --- | --- | ---
-name | The name of that instance of the plugin, used for the style | `'zView'`
+name | The name of that instance of the plugin, used for the style<br>This is usefull when you have more instances of the slider in the same page and want to differentiate them | `'zView'`
 theme | The theme name to be used | `'default'`
+zIndex | The base z-index of the slider<br>Be carefull, it is the *base* z-index, some elements will be higher than it | `1`
+startSlide | The slide from which the slider starts | `0`
+transition | The milliseconds that each transition will last | `400`
+play | If the slider starts playing its slides | `true`
+delay | The amount of milliseconds the slider will wait before play the next content | `5000`
+playAfterMove | After a manual slide move, the slider will continue playing? | `false`
