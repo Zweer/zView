@@ -61,6 +61,7 @@ theme | The theme name to be used | `'default'`
 zIndex | The base z-index of the slider<br>Be carefull, it is the *base* z-index, some elements will be higher than it | `1`
 startSlide | The slide from which the slider starts | `0`
 infiniteLoop | If the loop is infinite or when arrived at the end it shouldn't allow to go to the first by using 'next' | `true`
+rtl | If the loop have to go right to left or viceversa | `false`
 transition | The milliseconds that each transition will last | `400`
 play | If the slider starts playing its slides | `true`
 delay | The amount of milliseconds the slider will wait before play the next content | `5000`

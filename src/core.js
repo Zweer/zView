@@ -17,6 +17,10 @@
       .addClass(this.options.theme + '-theme')
       .addClass('zView');
 
+    if (this.options.rtl) {
+      this.$element.addClass('zView-rtl');
+    }
+
     this.$element.children().each($.proxy(this._initChild, this));
 
     this.$contents = this.$element.children()
@@ -92,7 +96,7 @@
       .html(this.options.buttons.htmls.previous)
       .attr('title', this.options.buttons.labels.previous)
       .attr('href', '#')
-      .click($.proxy(this.prev, this))
+      .click($.proxy(this.options.rtl ? this.next : this.prev, this))
       .appendTo($('<li></li>').addClass('zView-navigator-prev').appendTo(this.$navigator));
 
     this.$contents.each($.proxy(function (index, $content) {
@@ -108,7 +112,7 @@
       .html(this.options.buttons.htmls.next)
       .attr('title', this.options.buttons.labels.next)
       .attr('href', '#')
-      .click($.proxy(this.next, this))
+      .click($.proxy(this.options.rtl ? this.prev : this.next, this))
       .appendTo($('<li></li>').addClass('zView-navigator-next').appendTo(this.$navigator));
 
     this.$navigator
@@ -159,7 +163,7 @@
       .attr('href', '#')
       .attr('title', this.options.buttons.labels.next)
       .html(this.options.buttons.htmls.next)
-      .click($.proxy(this.next, this))
+      .click($.proxy(this.options.rtl ? this.prev : this.next, this))
       .mouseenter($.proxy(function () {
         this.$next.animate({
           opacity: this.options.buttons.opacity.next.end
@@ -189,7 +193,7 @@
       .attr('href', '#')
       .attr('title', this.options.buttons.labels.previous)
       .html(this.options.buttons.htmls.previous)
-      .click($.proxy(this.prev, this))
+      .click($.proxy(this.options.rtl ? this.next : this.prev, this))
       .mouseenter($.proxy(function () {
         this.$previous.animate({
           opacity: this.options.buttons.opacity.previous.end
@@ -384,6 +388,7 @@
 
     startSlide: 0,
     infiniteLoop: true,
+    rtl: false,
 
     transition: 400,
 
