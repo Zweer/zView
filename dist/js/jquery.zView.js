@@ -239,6 +239,10 @@ if (typeof jQuery === 'undefined') {
     this.$previous.mouseleave();
   };
 
+  ZView.prototype._refresh = function() {
+    this._refreshPlayPause();
+  };
+
   ZView.prototype._refreshPlayPause = function() {
     if (this.playing) {
       this.$playPause
@@ -333,7 +337,7 @@ if (typeof jQuery === 'undefined') {
       this.playing = false;
     }
 
-    this._refreshPlayPause();
+    this._refresh();
 
     return this._show();
   };
