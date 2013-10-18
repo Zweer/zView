@@ -149,7 +149,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', ['clean', 'dist']);
 
-  grunt.registerTask('validation', ['jshint']);
+  grunt.registerTask('validation', ['jshint', 'recess:validation']);
 
   grunt.registerTask('development', ['default', 'concurrent:watch']);
   grunt.registerTask('development:connect', ['default', 'concurrent:development']);
