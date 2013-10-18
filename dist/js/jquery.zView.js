@@ -126,9 +126,9 @@ if (typeof jQuery === 'undefined') {
         .attr('title', 'Content ' + index)
         .attr('href', '#')
         .click($.proxy(this.show, this, index))
-        .appendTo($('<li></li>').appendTo(this.$navigator));
+        .appendTo($('<li></li>').addClass('zView-navigator-item').appendTo(this.$navigator));
     }, this));
-    this.$navigatorContents = this.$navigator.find(':not(:first-child) a');
+    this.$navigatorContents = this.$navigator.find('.zView-navigator-item a');
 
     this.$navigatorNext = $('<a></a>')
       .html(this.options.buttons.htmls.next)
