@@ -40,6 +40,16 @@ module.exports = function (grunt) {
 
         src: ['<%= recess.zview.src[0] %>'],
         dest: 'dist/css/<%= filename %>.min.css'
+      },
+
+      validation: {
+        options: {
+          compile: false,
+          noOverqualifying: false,
+          noUniversalSelectors: false
+        },
+
+        src:  ['<%= recess.zview.dest %>']
       }
     },
 
